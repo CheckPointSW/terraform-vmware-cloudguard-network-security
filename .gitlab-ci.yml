@@ -68,7 +68,7 @@ prepare_github_release_branch:
 
     # Remove the following files/directories from been reflected to GitHub
     # Add here any file/dir that should not reflected to GitHub, such as internal configuration ci/cd
-    - git reset .gitlab-ci.yml .env.example DEVELOPMENT.md .vscode .openapi-generator-ignore scripts RELEASE.md .shellcheckignore .github/workflows .spectral
+    - git reset .gitlab-ci.yml .env.example DEVELOPMENT.md .vscode .openapi-generator-ignore scripts RELEASE.md .shellcheckignore .github/workflows .spectral sonar-project.properties
     - git commit -m "$commit_message"
 
     # Push cherry-pick
