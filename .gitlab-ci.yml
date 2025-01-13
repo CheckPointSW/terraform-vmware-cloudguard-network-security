@@ -125,7 +125,7 @@ reflect_github_release_branch:
     - gh pr update-branch --rebase
 
     # We do want this process to be manually on the GitHub once the build succeed 
-    # gh pr merge --rebase
+    - gh pr merge --rebase
 
   only:
     - master
