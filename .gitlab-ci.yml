@@ -42,7 +42,7 @@ prepare_github_release_branch:
   script:
     - git config --global user.email $GITLAB_USER_EMAIL
     - git config --global user.name $GITLAB_USER_NAME
-    - git remote set-url origin "https://${GITLAB_USER_NAME}:${PIPELINE_RELEASE_TOKEN}@gitlab.locsec.net/cloudguard-integrations/terraform-gcp-cloudguard-network-security.git"
+    - git remote set-url origin "https://${GITLAB_USER_NAME}:${PIPELINE_RELEASE_TOKEN}@gitlab.locsec.net/cloudguard-integrations/terraform-vmware-cloudguard-network-security.git"
 
     # Fetch all branches or the repo (running on master, and needed release branch to manage)
     - git fetch
@@ -99,7 +99,7 @@ reflect_github_release_branch:
     - git config --global user.name chkp-$GITLAB_USER_NAME
 
       # pull local master branch
-    - git remote set-url origin https://${GITLAB_USER_NAME}:${PIPELINE_RELEASE_TOKEN}@gitlab.locsec.net/cloudguard-integrations/terraform-gcp-cloudguard-network-security.git
+    - git remote set-url origin https://${GITLAB_USER_NAME}:${PIPELINE_RELEASE_TOKEN}@gitlab.locsec.net/cloudguard-integrations/terraform-vmware-cloudguard-network-security.git
     - git fetch
 
     # First, switch and pull the GitLab's dedicated master branch
@@ -117,7 +117,7 @@ reflect_github_release_branch:
     - git config --global http.postBuffer 524288000
 
     # change origin to github
-    - git remote add github-origin https://chkp-${GITLAB_USER_NAME}:${GH_TOKEN}@github.com/CheckPointSW/terraform-gcp-cloudguard-network-security.git
+    - git remote add github-origin https://chkp-${GITLAB_USER_NAME}:${GH_TOKEN}@github.com/CheckPointSW/terraform-vmware-cloudguard-network-security.git
 
     # push to github PR and merge it
     - git push --set-upstream github-origin $CI_PROJECT_PATH_SLUG-$CI_COMMIT_SHA
