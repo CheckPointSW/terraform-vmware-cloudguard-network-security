@@ -61,12 +61,7 @@ module "management" {
 - `num_cpus`: (Optional) Number of CPUs for the Security Management.
 - `num_cores_per_socket`: (Optional) Number of cores per socket for the Security Management.
 - `memory`: (Optional) Memory size for the Security Management in MB.
-- `provision` - (Optional) The disk provisioning type. If set, all the disks included in the OVF/OVA will have the same specified policy.
-  One of `thin`, `thick`, `eagerZeroedThick`, or `sameAsSource`.
-  * `thin`: Each disk is allocated and zeroed on demand as the space is used.
-  * `thick`: Each disk is allocated at creation time and the space is zeroed on demand as the space is used.
-  * `eagerZeroedThick`: Each disk is allocated and zeroed at creation time.
-  * `sameAsSource`: Each disk will have the same disk type as the source. 
+- `provision`: (Optional) Provision type (thin, flat, thick). 
 - `primary_dns`: (Optional) Primary DNS server.
 - `proxy_port`: (Optional) Port of the proxy server.
 - `proxy_address`: (Optional) Address of the proxy server.

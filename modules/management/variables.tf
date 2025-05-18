@@ -65,10 +65,10 @@ variable "memory" {
 
 variable "provision" {
   type    = string
-  default = "sameAsSource"
+  default = "thin"
   validation {
-    condition     = var.provision == "thin" || var.provision == "thick" || var.provision == "eagerZeroedThick" || var.provision == "sameAsSource"
-    error_message = "The provision value must be one of thin, thick, eagerZeroedThick, or sameAsSource"
+    condition     = var.provision == "thin" || var.provision == "flat" || var.provision == "thick"
+    error_message = "The provision value must be one of thin, flat, thick"
   }
 }
 

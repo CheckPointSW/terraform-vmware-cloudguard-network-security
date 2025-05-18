@@ -66,12 +66,7 @@ module "single_gateway" {
 - `num_cores_per_socket`: (Optional) Number of cores per socket for the Security Gateway. Using OVF properties by
   default.
 - `memory`: (Optional) Memory size for the Security Gateway in MB. Using OVF properties by default.
-- `provision` - (Optional) The disk provisioning type. If set, all the disks included in the OVF/OVA will have the same specified policy.
-  One of `thin`, `thick`, `eagerZeroedThick`, or `sameAsSource`.
-  * `thin`: Each disk is allocated and zeroed on demand as the space is used.
-  * `thick`: Each disk is allocated at creation time and the space is zeroed on demand as the space is used.
-  * `eagerZeroedThick`: Each disk is allocated and zeroed at creation time.
-  * `sameAsSource`: Each disk will have the same disk type as the source. 
+- `provision`: (Optional) Provision type (thin, flat, thick).
 - `primary_dns`: (Optional) Primary DNS server.
 - `ntp_primary`: (Optional) Primary NTP server.
 - `ntp_primary_version`: (Optional) Version of the primary NTP server. Default is `4`.
