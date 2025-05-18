@@ -38,7 +38,7 @@ data "vsphere_ovf_vm_template" "ovf" {
 }
 
 resource "vsphere_virtual_machine" "vm" {
-  name             = var.host_display_name
+  name             = var.host_display_name != "" ? var.host_display_name : var.hostname
   datacenter_id    = data.vsphere_datacenter.datacenter.id
   datastore_id     = data.vsphere_datastore.datastore.id
   host_system_id   = data.vsphere_host.host.id

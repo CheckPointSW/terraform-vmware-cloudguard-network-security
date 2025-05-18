@@ -29,7 +29,8 @@ module "single_gateway" {
   esxi_host         = "172.23.24.20"
   eth0_network_name = "external-network"
   eth1_network_name = "internal-network"
-  local_ovf_path = "/home/file/jaguar_opt_main-777-991001696-GW.ova"
+  local_ovf_path    = "/home/file/jaguar_opt_main-777-991001696-GW.ova"
+  hostname          = "Security-Gateway-example"
 
   // Gateway configuration
   eth0_ipaddress       = "172.23.24.10"
@@ -52,8 +53,10 @@ module "single_gateway" {
 - `eth0_network_name`: (**Required**) The external network name.
 - `eth1_network_name`: (**Required**) The internal network name.
 - `local_ovf_path`: (**Required**) The local path to the OVF/OVA file.
+- `hostname`: (**Required**) The name of the Security Gateway.
 - `admin_password`: (**Required**) Admin password.
 - `ftw_sic_key`: (**Required**) Secure Internal Communication Key.
+- `display_name`: (Optional) The display name of the Security Gateway (from vCenter view). Default is the same as the `hostname`.
 - `eth0_ipaddress`: (Optional) IP address for eth0. Leave blank for DHCP.
 - `eth0_subnet_mask`: (Optional) Subnet mask for eth0. Default is `24`. Leave blank for DHCP.
 - `eth0_gateway_address`: (Optional) Gateway address for eth0. Leave blank for DHCP.
@@ -63,7 +66,12 @@ module "single_gateway" {
 - `num_cores_per_socket`: (Optional) Number of cores per socket for the Security Gateway. Using OVF properties by
   default.
 - `memory`: (Optional) Memory size for the Security Gateway in MB. Using OVF properties by default.
-- `provision`: (Optional) Provision type (thin, flat, thick).
+- `provision` - (Optional) The disk provisioning type. If set, all the disks included in the OVF/OVA will have the same specified policy.
+  One of `thin`, `thick`, `eagerZeroedThick`, or `sameAsSource`.
+  * `thin`: Each disk is allocated and zeroed on demand as the space is used.
+  * `thick`: Each disk is allocated at creation time and the space is zeroed on demand as the space is used.
+  * `eagerZeroedThick`: Each disk is allocated and zeroed at creation time.
+  * `sameAsSource`: Each disk will have the same disk type as the source. 
 - `primary_dns`: (Optional) Primary DNS server.
 - `ntp_primary`: (Optional) Primary NTP server.
 - `ntp_primary_version`: (Optional) Version of the primary NTP server. Default is `4`.

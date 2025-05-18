@@ -38,7 +38,7 @@ The repository contains:
 # Best Practices for Using CloudGuard Modules
 
 ## Step 1: Use the Required Module
-Add the required module in your Terraform configuration file (`main.tf`) to deploy resources. For example:
+Add the required module in your Terraform configuration file to deploy resources. For example:
 
 ```hcl
 provider "vsphere" {}
@@ -53,8 +53,8 @@ module "example_module" {
 ## Step 2: Open the Terminal
 
 Ensure you have [Terraform](https://developer.hashicorp.com/terraform/install) installed and navigate to the directory
-containing your `main.tf` file is located, using the appropriate terminal:
-- **Linux/macOS**: **Terminal**.
+where your Terraform configuration file is located using the appropriate terminal:
+- **Linux**: **Terminal**.
 - **Windows**: **PowerShell** or **Command Prompt**.
 
 ---

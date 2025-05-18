@@ -27,7 +27,8 @@ module "management" {
   datastore         = "datastore-1"
   esxi_host         = "172.23.24.20"
   eth0_network_name = "external-network"
-  local_ovf_path = "jaguar_opt_main-777-991001696"
+  local_ovf_path = "/home/file/jaguar_opt_main-777-991001696"
+  hostname          = "Management-Server-example"
 
   // Management configuration
   eth0_ipaddress       = "172.23.24.10"
@@ -53,13 +54,19 @@ module "management" {
 - `hostname`: (**Required**) Management server hostname.
 - `mgmt_gui_passwd`: (**Required**) Management GUI Client Password.
 - `maintenance_hash`: (**Required**) Default maintenance password.
+- `display_name`: (Optional) The display name of the Management server (from vCenter view). Default is the same as the `hostname`.
 - `eth0_ipaddress`: (Optional) IP address for eth0. Leave blank for DHCP.
 - `eth0_subnet_mask`: (Optional) Subnet mask for eth0. default is `24`. Leave blank for DHCP.
 - `eth0_gateway_address`: (Optional) Gateway address for eth0. Leave blank for DHCP.
 - `num_cpus`: (Optional) Number of CPUs for the Security Management.
 - `num_cores_per_socket`: (Optional) Number of cores per socket for the Security Management.
 - `memory`: (Optional) Memory size for the Security Management in MB.
-- `provision`: (Optional) Provision type (thin, flat, thick).
+- `provision` - (Optional) The disk provisioning type. If set, all the disks included in the OVF/OVA will have the same specified policy.
+  One of `thin`, `thick`, `eagerZeroedThick`, or `sameAsSource`.
+  * `thin`: Each disk is allocated and zeroed on demand as the space is used.
+  * `thick`: Each disk is allocated at creation time and the space is zeroed on demand as the space is used.
+  * `eagerZeroedThick`: Each disk is allocated and zeroed at creation time.
+  * `sameAsSource`: Each disk will have the same disk type as the source. 
 - `primary_dns`: (Optional) Primary DNS server.
 - `proxy_port`: (Optional) Port of the proxy server.
 - `proxy_address`: (Optional) Address of the proxy server.

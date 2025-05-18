@@ -23,11 +23,12 @@ variable "datastore" {
 //**************** Virtual Machine Instances Variables *****************//
 
 variable "host_display_name" {
-  description = "Display name of the gateway (from vCenter)"
+  description = "Display name of the Management server (from vCenter)"
+  default     = ""
 }
 
 variable "hostname" {
-  description = "MGMT name"
+  description = "Check Point Management server hostname"
   type        = string
   validation {
     condition     = length(var.hostname) >= 5
@@ -64,10 +65,10 @@ variable "memory" {
 
 variable "provision" {
   type    = string
-  default = "thin"
+  default = "sameAsSource"
   validation {
-    condition     = var.provision == "thin" || var.provision == "flat" || var.provision == "thick"
-    error_message = "The provision value must be one of thin, flat, thick"
+    condition     = var.provision == "thin" || var.provision == "thick" || var.provision == "eagerZeroedThick" || var.provision == "sameAsSource"
+    error_message = "The provision value must be one of thin, thick, eagerZeroedThick, or sameAsSource"
   }
 }
 
