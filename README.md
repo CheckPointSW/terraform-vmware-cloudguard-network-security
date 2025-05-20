@@ -51,7 +51,6 @@ module "example_module" {
 ```
 ---
 ## Step 2: Open the Terminal
-
 Ensure you have [Terraform](https://developer.hashicorp.com/terraform/install) installed and navigate to the directory
 where your Terraform configuration file is located using the appropriate terminal:
 - **Linux**: **Terminal**.
