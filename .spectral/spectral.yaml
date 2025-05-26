@@ -1,0 +1,19 @@
+match_ignores:
+  ignores:
+    - match_line_text: admin_password * = "PLEASE ENTER ADMIN PASSWORD"*
+
+    #GCP
+    - rule_id: TFGCP332
+    - rule_id: TFGCP304
+    - rule_id: TFGCP303
+    - rule_id: TFGCP203
+    - rule_id: TFGCP209
+    - rule_id: TFGCP093
+
+projects:
+  terraform:
+    project:
+      name: terraform
+    input:
+      - local: .
+        name: sources
