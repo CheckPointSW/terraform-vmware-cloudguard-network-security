@@ -1,0 +1,131 @@
+variables:
+  USER_COMMIT_SHA: ''
+
+
+include:
+  - project: devis/templates
+    file: '.template.yml'
+    ref: latest
+  - project: cloudguard-integrations/ci-utils
+    ref: master
+    file: ci/.gitlab-ci-analysis.yml
+  - project: cloudguard-integrations/ci-utils
+    ref: master
+    file: ci/.gitlab-ci-verify-jira.yml
+
+
+workflow:
+  rules:
+    - when: always
+
+
+stages:
+  - analysis
+  - Verify
+  - upload
+  - prepare_release
+  - github_upload
+
+
+prepare_github_release_branch:
+  stage: prepare_release
+  image: artifactory-product.checkpoint.com/docker/alpine:latest
+  variables:
+    ARTIFACTORY: "https://artifactory-product.checkpoint.com/artifactory"
+  before_script:
+    # Install GitHub CLI
+    - echo "$ARTIFACTORY/alpine/edge/main" > /etc/apk/repositories
+    - echo "$ARTIFACTORY/alpine/edge/community" >> /etc/apk/repositories
+    - wget -O /etc/apk/keys/devis.rsa.pub $ARTIFACTORY/api/security/keypair/public/repositories/alpine
+    - apk update && apk add openssl ca-certificates github-cli
+
+  script:
+    - git config --global user.email $GITLAB_USER_EMAIL
+    - git config --global user.name $GITLAB_USER_NAME
+    - git remote set-url origin "https://${GITLAB_USER_NAME}:${PIPELINE_RELEASE_TOKEN}@gitlab.locsec.net/cloudguard-integrations/terraform-vmware-cloudguard-network-security.git"
+
+    # Fetch all branches or the repo (running on master, and needed release branch to manage)
+    - git fetch
+    - git checkout -f master
+    - git pull
+    - git reset --hard origin/master
+  
+    # Keep the title message for the GitHub PR title
+    - commit_message=$(git log --pretty=%s -n 1)
+
+    # Now checkout to the release branch, this branch is the one who should reflect to GitHub
+    - git checkout release
+    - git pull
+
+    # Squash all the content of master into release branch, on a conflict take master only.
+    # git merge --allow-unrelated-histories --squash -X theirs master
+    - if [ -n "$USER_COMMIT_SHA" ]; then
+    -   git cherry-pick -n $USER_COMMIT_SHA -X theirs
+    -   commit_message=$(git log --pretty=%s -n 1 ${USER_COMMIT_SHA:-$CI_COMMIT_SHA})
+    - else
+    -   git cherry-pick -n $CI_COMMIT_SHA -X theirs
+    - fi
+
+    # Remove the following files/directories from been reflected to GitHub
+    # Add here any file/dir that should not reflected to GitHub, such as internal configuration ci/cd
+    - git reset .gitlab-ci.yml .env.example DEVELOPMENT.md .vscode .openapi-generator-ignore scripts RELEASE.md .shellcheckignore .github/workflows .spectral sonar-project.properties
+    - git commit -m "$commit_message"
+
+    # Push cherry-pick
+    - git push origin release
+
+  only:
+    - master
+
+
+
+reflect_github_release_branch:
+  stage: github_upload
+  image: artifactory-product.checkpoint.com/docker/alpine:latest
+  variables:
+    ARTIFACTORY: "https://artifactory-product.checkpoint.com/artifactory"
+
+  before_script:
+    # Install GitHub CLI
+    - echo "$ARTIFACTORY/alpine/edge/main" > /etc/apk/repositories
+    - echo "$ARTIFACTORY/alpine/edge/community" >> /etc/apk/repositories
+    - wget -O /etc/apk/keys/devis.rsa.pub $ARTIFACTORY/api/security/keypair/public/repositories/alpine
+    - apk update && apk add openssl ca-certificates github-cli
+
+  script:
+    # Push changes to GitHub...
+    # !!! The job uses GitHub access token which must be renewed once a year. It's stored in ENV variables $GH_TOKEN
+    - git config --global user.email $GITLAB_USER_EMAIL
+    - git config --global user.name chkp-$GITLAB_USER_NAME
+
+      # pull local master branch
+    - git remote set-url origin https://${GITLAB_USER_NAME}:${PIPELINE_RELEASE_TOKEN}@gitlab.locsec.net/cloudguard-integrations/terraform-vmware-cloudguard-network-security.git
+    - git fetch
+
+    # First, switch and pull the GitLab's dedicated master branch
+    - git checkout -f release
+    - git pull
+    - git reset --hard origin/release
+
+    # Keep the title message for the GitHub PR title
+    - commit_message=$(git log --pretty=%s -n 1)
+
+    # Create new branch that will be pushed to GitHub
+    - git checkout -b $CI_PROJECT_PATH_SLUG-$CI_COMMIT_SHA
+
+    # see https://stackoverflow.com/questions/62753648/rpc-failed-http-400-curl-22-the-requested-url-returned-error-400-bad-request
+    - git config --global http.postBuffer 524288000
+
+    # change origin to github
+    - git remote add github-origin https://chkp-${GITLAB_USER_NAME}:${GH_TOKEN}@github.com/CheckPointSW/terraform-vmware-cloudguard-network-security.git
+
+    # push to github PR and merge it
+    - git push --set-upstream github-origin $CI_PROJECT_PATH_SLUG-$CI_COMMIT_SHA
+    - gh pr create --title "$commit_message" --body "$commit_message" --head $CI_PROJECT_PATH_SLUG-$CI_COMMIT_SHA
+    - gh pr update-branch
+
+    # We do want this process to be manually on the GitHub once the build succeed 
+    - gh pr merge --squash
+
+  only:
+    - master
