@@ -27,7 +27,7 @@ module "management" {
   datastore         = "datastore-1"
   esxi_host         = "172.23.24.20"
   eth0_network_name = "external-network"
-  local_ovf_path = "/home/file/jaguar_opt_main-777-991001696"
+  local_ovf_path = "/home/file/jaguar_opt_main-777-991001696.ova"
   hostname          = "Management-Server-example"
 
   // Management configuration

@@ -20,7 +20,7 @@ on [main readme.md file](https://registry.terraform.io/modules/CheckPointSW/clou
 provider "vsphere" {}
 
 module "single_gateway" {
-  source = "CheckPointSW/cloudguard-network-security/vmware///modules/single-gateway"
+  source = "CheckPointSW/cloudguard-network-security/vmware//modules/single-gateway"
 
   // VMware vCenter configuration
   datacenter_name   = "datacenter"
