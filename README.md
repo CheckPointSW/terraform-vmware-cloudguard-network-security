@@ -61,21 +61,18 @@ Set the required environment variables.
 export VSPHERE_USER="your_vsphere_username"
 export VSPHERE_PASSWORD="your_vsphere_password"
 export VSPHERE_SERVER="your_vsphere_server"
-export VSPHERE_ALLOW_UNVERIFIED_SSL="false"  # Set to "true" if vCenter is using self-signed certificate
 ```
 ### PowerShell (Windows)
 ```PowerShell
 $env:VSPHERE_USER="your_vsphere_username"
 $env:VSPHERE_PASSWORD="your_vsphere_password"
 $env:VSPHERE_SERVER"your_vsphere_server"
-$env:VSPHERE_ALLOW_UNVERIFIED_SSL = "false"  # Set to "true" if vCenter is using self-signed certificate
 ```
 ### Command Prompt (Windows)
 ```cmd
 set VSPHERE_SERVER=your_vsphere_server
 set VSPHERE_USER=your_vsphere_username
 set VSPHERE_PASSWORD=your_vsphere_password
-set VSPHERE_ALLOW_UNVERIFIED_SSL=false  # Set to `true` if vCenter is using self-signed certificate
 ```
 ---
 
