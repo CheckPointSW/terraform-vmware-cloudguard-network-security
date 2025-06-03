@@ -89,4 +89,3 @@ module "single_gateway" {
 - `hostname`: The name of the Security Gateway.
 - `managed_object_id`: The managed object ID of the Security Gateway.
 
-```
