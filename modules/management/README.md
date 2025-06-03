@@ -34,9 +34,8 @@ module "management" {
   eth0_ipaddress       = "172.23.24.10"
   eth0_subnet_mask     = 24
   eth0_gateway_address = "172.23.24.1"
-  hostname             = "Management-example"
   admin_password       = "AdminPassword123!"
-  mgmt_admin_passwd    = "guiPassword123!"
+  mgmt_gui_password    = "guiPassword123!"
   maintenance_hash     = "maintenancePassword123!"
   ssh_key              = ""
 }
@@ -52,7 +51,7 @@ module "management" {
 - `local_ovf_path`: (**Required**) The local path to the OVF/OVA file.
 - `admin_password`: (**Required**) Admin password.
 - `hostname`: (**Required**) Management server hostname.
-- `mgmt_gui_passwd`: (**Required**) Management GUI Client Password.
+- `mgmt_gui_password`: (**Required**) Management GUI Client Password.
 - `maintenance_hash`: (**Required**) Default maintenance password.
 - `display_name`: (Optional) The display name of the Management server (from vCenter view). Default is the same as the `hostname`.
 - `eth0_ipaddress`: (Optional) IP address for eth0. Leave blank for DHCP.
@@ -94,4 +93,3 @@ module "management" {
 - `hostname`: The name of the Security Management Server.
 - `managed_object_id`: The managed object ID of the Security Management Server.
 
-```
