@@ -60,7 +60,7 @@ module "management" {
 - `num_cpus`: (Optional) Number of CPUs for the Security Management.
 - `num_cores_per_socket`: (Optional) Number of cores per socket for the Security Management.
 - `memory`: (Optional) Memory size for the Security Management in MB.
-- `provision`: (Optional) Provision type (thin, flat, thick). 
+- `provision`: (Optional) Types of disk provisioning that can be set for the disk in the deployed OVF package, [reference](https://developer.broadcom.com/xapis/vsan-management-api/8.0U3/vim.OvfManager.CreateImportSpecParams.DiskProvisioningType.html).
 - `primary_dns`: (Optional) Primary DNS server.
 - `proxy_port`: (Optional) Port of the proxy server.
 - `proxy_address`: (Optional) Address of the proxy server.

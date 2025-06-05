@@ -66,10 +66,6 @@ variable "memory" {
 variable "provision" {
   type    = string
   default = "thin"
-  validation {
-    condition     = var.provision == "thin" || var.provision == "flat" || var.provision == "thick"
-    error_message = "The provision value must be one of thin, flat, thick"
-  }
 }
 
 variable "ssh_key" {
