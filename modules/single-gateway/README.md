@@ -66,7 +66,7 @@ module "single_gateway" {
 - `num_cores_per_socket`: (Optional) Number of cores per socket for the Security Gateway. Using OVF properties by
   default.
 - `memory`: (Optional) Memory size for the Security Gateway in MB. Using OVF properties by default.
-- `provision`: (Optional) Provision type (thin, flat, thick).
+- `provision`: (Optional) Types of disk provisioning that can be set for the disk in the deployed OVF package, [reference](https://developer.broadcom.com/xapis/vsan-management-api/8.0U3/vim.OvfManager.CreateImportSpecParams.DiskProvisioningType.html).
 - `primary_dns`: (Optional) Primary DNS server.
 - `ntp_primary`: (Optional) Primary NTP server.
 - `ntp_primary_version`: (Optional) Version of the primary NTP server. Default is `4`.
