@@ -27,7 +27,7 @@ The repository contains:
 
 **Submodules:**
 
-* [`single_gateway`](https://registry.terraform.io/modules/CheckPointSW/cloudguard-network-security/vmware/latest/submodules/single_gateway) - Deploys CloudGuard Single Gateway solution into an existing network.
+* [`single-gateway`](https://registry.terraform.io/modules/CheckPointSW/cloudguard-network-security/vmware/latest/submodules/single-gateway) - Deploys CloudGuard Single Gateway solution into an existing network.
 * [`management`](https://registry.terraform.io/modules/CheckPointSW/cloudguard-network-security/vmware/latest/submodules/management) - Deploys CloudGuard Management Server solution into an existing network.
 
 
