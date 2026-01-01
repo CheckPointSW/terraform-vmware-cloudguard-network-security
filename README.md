@@ -107,6 +107,8 @@ Notes:
 ## Related Products and Solutions
 * CloudGuard Network Security for [AWS](https://github.com/CheckPointSW/terraform-aws-cloudguard-network-security)
 * CloudGuard Network Security for [Azure](https://github.com/CheckPointSW/terraform-azure-cloudguard-network-security)
+* CloudGuard Network Security for [GCP](https://github.com/CheckPointSW/terraform-gcp-cloudguard-network-security)
+* CloudGuard Network Security for [Nutanix](https://github.com/CheckPointSW/terraform-nutanix-cloudguard-network-security) 
 
 ## References
 * For more information about Check Point CloudGuard for Public Cloud, see https://www.checkpoint.com/products/iaas-public-cloud-security/
