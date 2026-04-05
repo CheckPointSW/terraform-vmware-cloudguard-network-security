@@ -54,7 +54,6 @@ resource "vsphere_virtual_machine" "vm" {
 
 
   ovf_deploy {
-    allow_unverified_ssl_cert = true
     local_ovf_path            = data.vsphere_ovf_vm_template.ovf.local_ovf_path
     disk_provisioning         = var.provision
     ovf_network_map           = data.vsphere_ovf_vm_template.ovf.ovf_network_map
