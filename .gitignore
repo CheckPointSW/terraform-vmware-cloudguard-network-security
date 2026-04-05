@@ -1,0 +1,31 @@
+# Terraform state (contains secrets in plaintext)
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# Terraform variable files (may contain secrets)
+*.tfvars
+*.tfvars.json
+!*.tfvars.example
+
+# Terraform working directory
+.terraform/
+.terraform.lock.hcl
+
+# Crash logs (may contain sensitive info)
+crash.log
+crash.*.log
+
+# Environment files
+.env
+.env.*
+
+# Override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# OS files
+.DS_Store
+Thumbs.db
