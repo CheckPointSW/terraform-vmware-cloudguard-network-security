@@ -86,6 +86,9 @@ module "management" {
   important data (very recommended). See sk175504. `Yes` by default
 - `upload_info`: (Optional) Help Check Point improve the product by sending anonymous information. See sk175504. `Yes`
   by default.
+- `user_data`: (Optional) Cloud config in **base64**, passed to the instance as the `user_data` vApp property and used
+  for the first boot configuration of the Management server. See sk179752. Defaults to the module's built-in cloud
+  config. **Do not change**.
 
 ## Outputs
 
