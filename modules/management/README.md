@@ -53,7 +53,7 @@ module "management" {
 - `hostname`: (**Required**) Management server hostname.
 - `mgmt_gui_password`: (**Required**) Management GUI Client Password.
 - `maintenance_hash`: (**Required**) Default maintenance password.
-- `display_name`: (Optional) The display name of the Management server (from vCenter view). Default is the same as the `hostname`.
+- `host_display_name`: (Optional) The display name of the Management server (from vCenter view). Default is the same as the `hostname`.
 - `eth0_ipaddress`: (Optional) IP address for eth0. Leave blank for DHCP.
 - `eth0_subnet_mask`: (Optional) Subnet mask for eth0. default is `24`. Leave blank for DHCP.
 - `eth0_gateway_address`: (Optional) Gateway address for eth0. Leave blank for DHCP.

@@ -56,7 +56,7 @@ module "single_gateway" {
 - `hostname`: (**Required**) The name of the Security Gateway.
 - `admin_password`: (**Required**) Admin password.
 - `ftw_sic_key`: (**Required**) Secure Internal Communication Key.
-- `display_name`: (Optional) The display name of the Security Gateway (from vCenter view). Default is the same as the `hostname`.
+- `host_display_name`: (Optional) The display name of the Security Gateway (from vCenter view). Default is the same as the `hostname`.
 - `eth0_ipaddress`: (Optional) IP address for eth0. Leave blank for DHCP.
 - `eth0_subnet_mask`: (Optional) Subnet mask for eth0. Default is `24`. Leave blank for DHCP.
 - `eth0_gateway_address`: (Optional) Gateway address for eth0. Leave blank for DHCP.
