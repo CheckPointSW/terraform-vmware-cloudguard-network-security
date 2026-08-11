@@ -6,12 +6,12 @@ variable "datacenter_name" {
 }
 
 variable "esxi_host" {
-  description = "Host in vCenter host name"
+  description = "ESXi host name as it appears in vCenter"
   type        = string
 }
 
 variable "resource_pool" {
-  description = "Resource Pool in vCenter host name"
+  description = "Resource pool name in vCenter"
   type        = string
 }
 

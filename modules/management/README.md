@@ -44,7 +44,7 @@ module "management" {
 ## Argument Reference
 
 - `datacenter_name`: (**Required**) The name of the vSphere datacenter.
-- `resource_pool`: (**Required**) The resource pool in vCenter host name.
+- `resource_pool`: (**Required**) The resource pool name in vCenter.
 - `datastore`: (**Required**) The datastore name.
 - `esxi_host`: (**Required**) The ESXi host name.
 - `eth0_network_name`: (**Required**) The external network name.
