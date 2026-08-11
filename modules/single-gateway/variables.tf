@@ -45,7 +45,7 @@ variable "admin_password" {
 }
 
 variable "local_ovf_path" {
-  description = "Full path to OVA file"
+  description = "Full path to OVF folder or OVA file"
 }
 
 variable "num_cpus" {
