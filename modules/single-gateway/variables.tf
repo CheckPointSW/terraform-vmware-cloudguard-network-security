@@ -176,14 +176,14 @@ variable "ntp_primary_version" {
 
 variable "proxy_address" {
   default     = null
-  description = "Optional parameters, address of the proxy server"
+  description = "Optional parameter, address of the proxy server. type: ipv4"
   type        = string
   nullable    = true
 }
 
 variable "proxy_port" {
   default     = null
-  description = "Optional parameters, port of the proxy server"
+  description = "Optional parameter, port of the proxy server"
   nullable    = true
 }
 

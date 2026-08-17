@@ -79,8 +79,8 @@ variable "sic_for_secondary_mgmt" {
   description = "Secure Internal Communication key"
   default     = ""
   validation {
-    condition     = var.sic_for_secondary_mgmt == "" || (var.high_availability_configuration == "Secondary" && 4 <= length(var.sic_for_secondary_mgmt))
-    error_message = "SIC key must be at least 4 characters long"
+    condition     = (var.high_availability_configuration != "Secondary" && var.sic_for_secondary_mgmt == "") || (var.high_availability_configuration == "Secondary" && 4 <= length(var.sic_for_secondary_mgmt))
+    error_message = "sic_for_secondary_mgmt must be empty unless high_availability_configuration is 'Secondary', and must be at least 4 characters when set"
   }
 }
 
@@ -205,13 +205,13 @@ variable "primary_dns" {
 
 variable "proxy_port" {
   default     = null
-  description = "Optional parameters, port of the proxy server"
+  description = "Optional parameter, port of the proxy server"
   nullable    = true
 }
 
 variable "proxy_address" {
   default     = null
-  description = "Optional parameters, address of the proxy server. type: ipv4"
+  description = "Optional parameter, address of the proxy server. type: ipv4"
   type        = string
   nullable    = true
 }
