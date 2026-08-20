@@ -172,7 +172,7 @@ variable "high_availability_configuration" {
 variable "maintenance_hash" {
   default     = ""
   sensitive   = true
-  description = "Default maintenance password (to generate use grub2-mkpasswd-pbkdf2)"
+  description = "Default maintenance password hash (to generate use grub2-mkpasswd-pbkdf2)"
 }
 
 //********************** Networking Variables **************************//
