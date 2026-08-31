@@ -76,6 +76,10 @@ resource "vsphere_virtual_machine" "vm" {
       "ntp_primary_version" = var.ntp_primary_version // default is 4
       "ssh_key" = var.ssh_key
 
+      // Consent flags (sk175504)
+      "download_info" = var.download_info
+      "upload_info"   = var.upload_info
+
       // MGMT configuration
       "mgmt_admin_passwd"               = var.mgmt_gui_password
       "mgmt_gui_clients_radio"          = var.mgmt_gui_clients_radio
