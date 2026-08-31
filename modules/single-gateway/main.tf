@@ -86,6 +86,10 @@ resource "vsphere_virtual_machine" "vm" {
       "ntp_primary_version" = var.ntp_primary_version
       "ssh_key" = var.ssh_key
 
+      // Consent flags (sk175504)
+      "download_info" = var.download_info
+      "upload_info"   = var.upload_info
+
       // GW configuration
       "CheckPoint.ftwSicKey"      = var.ftw_sic_key
       "CheckPoint.adminHash"      = var.admin_password
